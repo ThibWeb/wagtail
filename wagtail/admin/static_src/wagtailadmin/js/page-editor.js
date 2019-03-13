@@ -25,55 +25,36 @@ function hideCurrent(current, input) {
     }
 }
 
+
+function onChangeDateTime (picker, $input) {
+    $input[0].dispatchEvent(new Event('change'));
+}
+
+
 function initDateChooser(id, opts) {
-    if (window.dateTimePickerTranslations) {
-        $('#' + id).datetimepicker($.extend({
-            closeOnDateSelect: true,
-            timepicker: false,
-            scrollInput: false,
-            format: 'Y-m-d',
-            onGenerate: hideCurrent
-        }, opts || {}));
-    } else {
-        $('#' + id).datetimepicker($.extend({
-            timepicker: false,
-            scrollInput: false,
-            format: 'Y-m-d',
-            onGenerate: hideCurrent
-        }, opts || {}));
-    }
+    $('#' + id).datetimepicker($.extend({
+        timepicker: false,
+        scrollInput: false,
+        format: 'Y-m-d',
+        onGenerate: hideCurrent,
+        onChangeDateTime: onChangeDateTime,
+    }, opts || {}));
 }
 
 function initTimeChooser(id) {
-    if (window.dateTimePickerTranslations) {
-        $('#' + id).datetimepicker({
-            closeOnDateSelect: true,
-            datepicker: false,
-            scrollInput: false,
-            format: 'H:i',
-        });
-    } else {
-        $('#' + id).datetimepicker({
-            datepicker: false,
-            format: 'H:i'
-        });
-    }
+    $('#' + id).datetimepicker({
+        datepicker: false,
+        format: 'H:i',
+        onChangeDateTime: onChangeDateTime,
+    });
 }
 
 function initDateTimeChooser(id, opts) {
-    if (window.dateTimePickerTranslations) {
-        $('#' + id).datetimepicker($.extend({
-            closeOnDateSelect: true,
-            format: 'Y-m-d H:i',
-            scrollInput: false,
-            onGenerate: hideCurrent
-        }, opts || {}));
-    } else {
-        $('#' + id).datetimepicker($.extend({
-            format: 'Y-m-d H:i',
-            onGenerate: hideCurrent
-        }, opts || {}));
-    }
+    $('#' + id).datetimepicker($.extend({
+        format: 'Y-m-d H:i',
+        onGenerate: hideCurrent,
+        onChangeDateTime: onChangeDateTime,
+    }, opts || {}));
 }
 
 function InlinePanel(opts) {
