@@ -40,11 +40,6 @@ module.exports = function exports() {
         minChunks: 2,
       }),
     ],
-    resolve: {
-      alias: {
-        'wagtail-client': path.resolve('.', 'client'),
-      },
-    },
     module: {
       rules: [
         {
