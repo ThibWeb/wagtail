@@ -1,5 +1,13 @@
+jest.mock('../../../../../client/src/index', () => ({
+  Icon: jest.fn(),
+  Portal: jest.fn(),
+  initExplorer: jest.fn(),
+  initFocusOutline: jest.fn(),
+  initSubmenus: jest.fn(),
+  initUpgradeNotification: jest.fn(),
+}));
+
 const wagtail = require('../../../../../client/src/index');
-wagtail.initExplorer = jest.fn();
 
 document.addEventListener = jest.fn();
 
