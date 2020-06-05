@@ -6,7 +6,6 @@ var sourcemaps = require('gulp-sourcemaps');
 var size = require('gulp-size');
 var config = require('../config');
 var autoprefixer = require('gulp-autoprefixer');
-var simpleCopyTask = require('../lib/simplyCopy');
 var normalizePath = require('../lib/normalize-path');
 var renameSrcToDest = require('../lib/rename-src-to-dest');
 var gutil = require('gulp-util');
@@ -27,9 +26,6 @@ var cssnanoConfig = {
     },
     zindex: false,
 };
-
-// Copy all assets that are not CSS files.
-gulp.task('styles:assets', simpleCopyTask('css/**/!(*.css)'));
 
 gulp.task('styles:css', function() {
     var sources = config.apps.map(function(app) {
@@ -79,5 +75,3 @@ gulp.task('styles:sass', function () {
         }))
         .on('error', gutil.log);
 });
-
-gulp.task('styles', gulp.series('styles:sass', 'styles:css', 'styles:assets'));
